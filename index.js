@@ -7,7 +7,13 @@ const app = express();
 const PORT = process.env.PORT;
 
 // Middleware
-app.use(cors());
+const corsOptions = {
+  origin: 'https://monportfolio-str.onrender.com',
+  methods: ['GET', 'POST'],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Configuration Nodemailer
