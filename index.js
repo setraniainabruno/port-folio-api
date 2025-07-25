@@ -7,13 +7,12 @@ const app = express();
 const PORT = process.env.PORT;
 
 // Middleware
-const corsOptions = {
+app.use(cors({
   origin: 'https://monportfolio-str.onrender.com',
-  methods: ['GET', 'POST'],
-  credentials: true,
-};
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 
-app.use(cors(corsOptions));
 app.use(express.json());
 
 // Configuration Nodemailer
@@ -25,6 +24,9 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+app.get('/',(res, req)=>{
+  res.status(200).json({message:"Serveur tourne bien"})
+})
 
 app.post('/api/send-email', async (req, res) => {
   const { to, subject, html } = req.body;
