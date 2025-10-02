@@ -4,7 +4,7 @@ const nodemailer = require('nodemailer');
 const cors = require('cors');
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3723;
 
 // Middleware
 app.use(cors({
@@ -19,8 +19,8 @@ app.use(express.json());
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: process.env.EMAIL_USER || 'brunoharison18@gmail.com',
+    pass: process.env.EMAIL_PASS || 'iwmfeltwpwllshkw',
   }
 });
 
